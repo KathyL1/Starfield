@@ -3,13 +3,12 @@ void setup()
 {
   size(500,500);  
   particles = new Particle[100];
-  for(int i = 0; i < particles.length; i++){
+  for (int i = 0; i < particles.length; i++){
     particles[i] = new Particle();
   }
-  for(int i = 0; i < 1; i++){
+  for (int i = 0; i < 2; i++){
     particles[i] = new OddballParticle();
   }
-
 }
 void draw()
 {
@@ -21,10 +20,12 @@ void draw()
 }
 
 void mousePressed(){
-  for (int i = 0; i < particles.length; i++)
+  for (int i = 0; i < particles.length; i++){
     particles[i] = new Particle();
-  for (int i = 0; i < 1; i++)
+  }
+  for (int i = 0; i < 2; i++){
     particles[i] = new OddballParticle();
+  }
 }
 class Particle //money
 {
@@ -57,7 +58,9 @@ class Particle //money
 
 class OddballParticle extends Particle //human
 {
+  int num;
   OddballParticle(){
+   num = 0;
    myX = myY = 270;
    myAngle = Math.random()*2*Math.PI;
    mySpeed = Math.random()*1;
@@ -68,6 +71,9 @@ class OddballParticle extends Particle //human
   }
 
   void show(){
+      for(int i = 0; i < 1000000; i++){
+        num++;
+      }
     stroke(0);
     strokeWeight(1.5);
     line((float)myX, (float)myY+10, (float)myX-20, (float)myY+35); //left hand
@@ -75,7 +81,10 @@ class OddballParticle extends Particle //human
     line((float)myX-5, (float)myY+30, (float)myX-5, (float)myY+60); // left leg
     line((float)myX+10, (float)myY+30, (float)myX+10, (float)myY+60); // right leg
     strokeWeight(0.5);
-    fill(170,230,255);
+    if(num % 2 == 0){
+        fill((int)(Math.random()*100)+155,(int)(Math.random()*100)+155,(int)(Math.random()*100)+155);
+        delay (10);    
+    }
     rect((float)myX-10, (float)myY, 25,50); //torso
     fill(255,236,207);
     ellipse((float)myX, (float)myY,40,40); //head
