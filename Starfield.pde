@@ -17,7 +17,6 @@ void draw()
     particles[i].show();
     particles[i].move();
   }
-  delay(20);
 }
 
 void mousePressed(){
@@ -27,7 +26,6 @@ void mousePressed(){
   for (int i = 0; i < 2; i++){
     particles[i] = new OddballParticle();
   }
-  delay(20);
 }
 class Particle //money
 {
